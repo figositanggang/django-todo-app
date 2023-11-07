@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Web</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="container mx-auto w-1/2 mt-48 border-2 rounded">
+        <h1 class="text-3xl font-semibold border-b-2 p-2">Daftar Todo</h1>
+        {% if object_list %}
+        <ul>
+            {% for todo in object_list %}
+            <a href="{% url 'todo_detail' todo.id %}"
+                class="flex p-2 bg-orange-300 hover:bg-orange-400 w-full justify-between text-lg font-semibold mb-1">
+                <li>{{ todo.name }}
+                </li>
+                <p class="text-sm text-gray-700">{{ todo.created_at }}</p>
+            </a>
+
+            {% endfor %}
+            <br>
+            <a href="{% url 'todo_new' %}"><button
+                    class="bg-emerald-700 hover:bg-emerald-600 rounded p-2 text-white self-end">Add
+                    Todo</button></a>
+        </ul>
+        {% else %}
+        <div class=" p-5">
+            <h2 class="text-2xl">Todo Empty...</h2>
+            <br>
+            <a href="{% url 'todo_new' %}"><button
+                    class="bg-emerald-700 hover:bg-emerald-600 rounded p-4 text-white">Add
+                    Todo</button></a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
